@@ -6,6 +6,5 @@ class CreateNotes < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :notes, :notables
   end
 end
