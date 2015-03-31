@@ -1,0 +1,2 @@
+class NotesController < SecureController
+end

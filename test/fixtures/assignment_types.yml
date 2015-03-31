@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+at1:
+  assign_type: Homework
+  percentage: .2
+  course: c1 
+
+at2:
+  assign_type: Quiz
+  percentage: .3
+  course: c1
+at3: 
+  assign_type: Test
+  percentage: .5
+  course: c1
+

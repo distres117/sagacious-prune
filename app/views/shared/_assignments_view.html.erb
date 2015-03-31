@@ -1,0 +1,51 @@
+<table id="gridview">
+	<% if !@assignments.nil? && !@assignments.empty? %>	
+		<th><%= sortable_link_to "Name", "assignments" %>
+		<th><%= sortable_link_to "Assigned", "assignments" %></th>
+		<th><%= sortable_link_to "Due", "assignments" %></th>
+		<th><%= sortable_link_to "Type", "assignments" %></th>
+		<th>Remove</th>
+		
+		<% @assignments.each do |assign| %>
+			<tr>
+				<td class="col-md-2">
+					<%= assign.name %>
+				</td>
+				<td class="col-md-2">
+					<%=  assign.created_at.strftime("%m/%d/%Y") %>
+				</td>
+				<td class="col-md-2">
+					<%=  assign.due.strftime("%m/%d/%Y") unless assign.due.nil? %>
+				</td>
+				<td class="col-md-2">
+					<%=  assign.assign_type %>
+				</td>
+				<td align="center">
+					<%= link_to [@course, assign], method: :delete, class: "btn btn-default btn-xs" do %>
+						<span class="glyphicon glyphicon-remove-circle"/>
+					<% end %>
+				</td>
+		
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+<div align="center">
+	<%= make_pages(@links) unless @links.nil? %>
+</div>
+<%= render "shared/validation" %>
+<div class="well">
+	<%= form_for [@course, Assignment.new], html: { class: "form-inline" } do |f| %>
+		<div class="form-group">
+		<%= f.select :assign_type, @course.filtered_types.map(&:assign_type), {}, { class: "form-control"} %> 
+		</div>
+		<div class="form-group">
+		<%= f.text_field :name, class: "form-control", placeholder: "Name" %> 
+		</div>
+		<div class="form-group">
+		<%= f.text_field :due, class: "form-control", placeholder: "Due Date", "data-provide" => "datepicker"%> 
+		</div>
+		
+			<%= f.submit class: "btn btn-primary" %>
+	<% end %>
+</div>

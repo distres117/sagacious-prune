@@ -1,0 +1,59 @@
+<h4>Course Settings</h4>
+
+<% if @course.get_total != 1 %>
+	<div class="alert alert-danger">
+		<h5>Total should be 100%</h5>
+	</div>
+<% end %>
+
+<div>
+<table id="gridview">
+	<thead>
+		<th>Course Name</th>
+		<% @course.assignment_types.each do |t| %>
+			<th><%= t.assign_type %></th>
+			<% end %>
+			<th>Total</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<%= best_in_place @course, :name, inner_class: "text_input" %>
+			</td>
+			<% @course.assignment_types.each do |t| %> 
+			<td>
+				<%= best_in_place [@course, t], :percentage, display_with: lambda {|i| number_to_percentage(i * 100, precision: 0) }, inner_class: "text_input" %>
+			</td>
+			<% end %>
+			<td>
+				<%= number_to_percentage @course.get_total * 100, precision: 0 %>
+			</td>
+		</tr>
+	</tbody>
+		
+</table>
+<%= link_to "Update", @course, class: "pull-right btn btn-primary" %>
+<br>
+<br>
+
+<%= render "shared/validation" %>
+<div class="well">
+	<%= form_for [@course, AssignmentType.new], html: { class: "form-inline" } do |f| %>
+		
+		<div class="form-group">
+			<%= f.label "Grading scheme" %>
+			<%= f.select :format, ["Check", "Letter"], {}, {class: "form-control"} %>
+		</div>
+		<div class="form-group">
+			<%= f.text_field :assign_type, class: "form-control", placeholder: "Assignment type" %> 
+		</div>
+		<div class="form-group">
+			<%= f.text_field :percentage, class: "form-control", placeholder: "% of Grade" %>
+		</div>
+		
+		
+		
+			<%= f.submit class: "btn btn-primary" %>
+	<% end %>
+</div>
+

@@ -1,0 +1,34 @@
+<table id="gridview">
+	<% if !@assignments.nil? && !@assignments.empty? && !@students.nil? && !@students.empty? %>	
+		<th>Student</th>
+			<% @assignments.each do |assign| %>
+				<th><%= assign.name %></th>
+			<% end %>
+		
+		<% @students.each do |student| %>
+			<tr>
+				<td class="col-md-2">
+					<%= "#{student.last}, #{student.first}"  %>
+				</td>
+				<% @assignments.each do |assign| %>
+					<td class="col-md-2">
+							<%= bip student.grade_where(assign.id), :score, @course.assignment_types.find_by(assign_type: @type).format %>
+					</td>
+				<% end %>
+			</tr>
+		<% end %>
+		<% else %>
+			<div class="well">
+				<% if @students.nil? || @students.empty? %>
+					<h4>There are no students enrolled in this course</h4>
+				<% else  %>
+					<h4>There are no assignments of that type</h4>
+				<% end %>
+			</div>
+	<% end %>
+</table>
+<div align="center">
+	<%= make_pages(@links) unless @links.nil? || @assignments.empty? %>
+</div>
+
+

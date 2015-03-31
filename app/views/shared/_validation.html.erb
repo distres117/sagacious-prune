@@ -1,0 +1,15 @@
+<% if alert %>
+	<div class="alert alert-danger" role="alert">
+		<h5>Record could not be created</h5>
+		<ul>
+			<% alert.to_a.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<% if notice %>
+	<div class="alert alert-success" role="alert">
+		<h5><%= notice %></h5>
+	</div>
+<% end %>

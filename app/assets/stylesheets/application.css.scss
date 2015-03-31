@@ -1,0 +1,77 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+
+div#header{
+	@extend .page-header;
+}
+div#form_group{
+	@extend .form-group;
+}
+.text_input{
+	@extend .form-control;
+	max-width: 50%;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+h1{
+	font-family: 'Pacifico', cursive;
+}
+
+input#form_control{
+	@extend .form-control;
+}
+
+input#btn_primary{
+	@extend .btn;
+	@extend .btn-primary;
+}
+
+ul#pagination {
+	@extend .pagination;
+	horizontal-align: center;
+}
+
+ul#side-bar {
+	@extend .nav;
+	@extend .nav-pills;
+	@extend .nav-stacked;
+
+}
+
+ul#side-bar li{
+	font-weight: bold;
+}
+
+ul#tabs {
+	@extend .nav;
+	@extend .nav-tabs;
+}
+
+table#gridview{
+	@extend .table;
+	@extend .table-hover;
+	@extend .table-bordered;
+}
+
+body{
+	background-color: #40E0D0;
+}
+
+div#viewpanel{
+	background-color: #FFFFFF;
+	height: 1080px;
+	max-width: 800px;
+
+}
+
+div#mainview{
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+
+

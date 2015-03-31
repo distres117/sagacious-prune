@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+c1:
+  name: Math
+  user: u1 
+
+c2:
+  name: French
+  user: u1 
+
+c3:
+  name: Social Studies
+  user: u1

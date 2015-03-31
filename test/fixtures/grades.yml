@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+g1:
+  score: 0
+  student: s1
+  assignment: a1
+
+g2:
+  score: 0
+  student: s1 
+  assignment: a2
+
+g3:
+  score: 1
+  student: s1
+  assignment: a3
+
+
+g5:
+  score: 1
+  student: s1
+  assignment: a4
+
+g6:
+  score: 1
+  student: s1
+  assignment: a5

@@ -1,0 +1,19 @@
+<nav>
+	<ul id="tabs">
+		<% current_user.courses.each do |course| %>
+				<%= content_tag :li, class: (params[:course_id] == course.id.to_s || params[:id] == course.id.to_s ? "active" : "") do %>
+					<%= link_to course.name, course_path(course) %>
+			<% end %>
+		<% end %>
+		<li>
+			<%= form_for Course.new do |f| %>
+				<%= f.submit class: "btn btn-primary" %>
+			<% end %>
+		</li>
+			<% if @course %>
+				<%= link_to "Remove Course", course_path(@course), method: :delete, data: {confirm: 'Are you sure you want to delete this course and all the data associated with it?'}, class: "pull-right btn btn-default"%>
+			<% end %>
+ 
+	</ul>
+	
+</nav>

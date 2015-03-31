@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+s1:
+  first: Jose
+  last: Vasquez
+  absences: 1
+  course: c1
+
+s2:
+  first: Martin
+  last: Smith
+  absences: 1
+  course: c1
+
+s3:
+  first: James
+  last: brown
+  absences: 1
+  course: c1

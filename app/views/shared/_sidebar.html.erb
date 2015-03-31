@@ -1,0 +1,19 @@
+<div>
+	<nav>
+		<ul id="side-bar">
+			<%= content_tag :li, class: is_active(course_students_path(@course)) do %>
+		  	<%= link_to "Students", course_students_path(@course, page: "1") %>
+		  <% end %>
+			<%= content_tag :li, class: is_active(course_assignments_path(@course)) do %>
+		  	<%= link_to "Assignments", course_assignments_path(@course, page: "1") %>
+		  <% end %>
+		  
+		  <% @course.assignment_types.each do |t| %>
+		  <%= content_tag :li, class: is_active(t.assign_type) do %>
+		  	<%= link_to t.assign_type.pluralize(2), course_assignments_path(@course, page: "1", type: t.assign_type) %> 
+		  	<% end %>
+		  <% end %>
+		  
+		</ul>
+	</nav>
+</div>

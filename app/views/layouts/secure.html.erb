@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recordkeeper Secure</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container" id="viewpanel">
+		<div id ="header">
+			<p class="pull-right"><%= "Hi, #{current_user.username.humanize}" %></p>
+			<h1>GradeBook</h1>
+
+		</div>
+		
+		<div>
+			<%= render 'shared/menubar' %>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<td valign="top">
+						<%= render 'shared/sidebar' %>
+					</td>
+					<td valign="top" width="99%" >
+						<div id="mainview">
+							<%= yield %>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+</body>
+</html>
