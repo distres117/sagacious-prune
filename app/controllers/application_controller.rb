@@ -26,4 +26,6 @@ class ApplicationController < ActionController::Base
     course.assignments.create(assign_type: "Participation", name: "Participation", due: Time.now )
     return course
   end
+
+  
 end

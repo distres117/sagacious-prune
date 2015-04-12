@@ -5,6 +5,7 @@ class CreateAssignmentTypes < ActiveRecord::Migration
       t.float :percentage
       t.references :course, index: true
       t.string :format
+      t.boolean :drop_lowest
       t.timestamps null: false
     end
     add_foreign_key :assignment_types, :courses

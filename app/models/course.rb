@@ -9,7 +9,7 @@ class Course < ActiveRecord::Base
   has_many :notes, as: :notable
 
   def get_total
-  	self.assignment_types.map(&:percentage).sum
+  	self.assignment_types.map(&:percentage).sum.round(2)
   end
 
   def filtered_types
@@ -19,8 +19,14 @@ class Course < ActiveRecord::Base
   def get_final_grade(student)
     grades =[]
     assignment_types.each do |atype|
-      par = (atype.percentage * 100) / assignments.where(assign_type: atype.assign_type).count
-      grades << student.grades_by_type(atype.assign_type).inject(0) {|acc, i| acc += i.score * par }
+      if !atype.drop_lowest
+        par = (atype.percentage * 100) / assignments.where(assign_type: atype.assign_type).count
+        grades << student.grades_by_type(atype.assign_type).inject(0) {|acc, i| acc += i.score * par }
+      else
+        par = (atype.percentage * 100) / (assignments.where(assign_type: atype.assign_type).count - 1)
+        _grades = student.grades_by_type(atype.assign_type).sort_by(&:score)
+        grades << _grades.drop(1).inject(0) {|acc, i| acc += i.score * par }
+      end
  
   end
   return grades.sum

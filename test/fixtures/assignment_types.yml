@@ -13,4 +13,9 @@ at3:
   assign_type: Test
   percentage: .5
   course: c1
+at4:
+  assign_type: Midterm
+  percentage: 1
+  course: c1
+  drop_lowest: true
 

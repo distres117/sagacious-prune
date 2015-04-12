@@ -4,7 +4,11 @@ class AssignmentTypesController < SecureController
 	def update
 		assign_type = AssignmentType.find(params[:id])
 		assign_type.update_attributes(assign_type_params)
-		render json: assign_type
+		partial = render_to_string( partial: 'courses/settings.html.erb', layout: false).html_safe
+		respond_to do |f|
+			f.json { render json: { partial: partial, status: 200 } }
+			f.js
+		end
 	end
 
 	def create
@@ -16,10 +20,17 @@ class AssignmentTypesController < SecureController
 		end
 	end
 
+	def destroy
+		target = @course.assignment_types.find(params[:id])
+		@course.assignments.where(assign_type: target.assign_type).destroy_all
+		target.destroy
+		redirect_to :back
+	end
+
 	private 
 
 	def assign_type_params
-		params.require(:assignment_type).permit(:assign_type, :percentage, :format)
+		params.require(:assignment_type).permit(:assign_type, :percentage, :format, :drop_lowest)
 	end
 
 end

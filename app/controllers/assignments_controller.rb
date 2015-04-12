@@ -2,7 +2,8 @@ class AssignmentsController < TasksController
 
 	def index
 		if @type
-			@assignments = @course.assignments.where(assign_type: @type).order("due ASC")
+			@sort = "last"
+			@assignments = @course.assignments.where(assign_type: @type).order("due ASC").drop(@drop.to_i).take(10)
 			@students = get_data("students", "assignments")
 		else
 			@assignments = get_data("assignments").reject {|a| a.assign_type == "Participation"}

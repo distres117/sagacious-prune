@@ -1,3 +1,11 @@
+<% if @assignments %>
+	<% if (@assignments.count + @drop.to_i) < @course.assignments.where(assign_type: @type).count %>
+		<%= link_to "Newer >>", course_assignments_path(@course, page: @page, sort: @sort, type: @type, drop: @drop.to_i + 10), class: "pull-right" %>
+	<% end %>
+	<% if @drop.to_i != 0 %>
+		<%= link_to "<< Older", course_assignments_path(@course, page: @page, sort: @sort, type: @type, drop: @drop.to_i - 10), class: "pull-left" %>
+	<% end %> 
+<% end %>
 <table id="gridview">
 	<% if !@assignments.nil? && !@assignments.empty? && !@students.nil? && !@students.empty? %>	
 		<th>Student</th>

@@ -4,6 +4,10 @@ class StudentsController < SecureController
 		@students = get_data("students")
 	end
 
+	def show
+		@student = Student.find(params[:id])
+	end
+
 	def update
 		student = Student.find(params[:id])
 		student.update_attributes(student_params)
@@ -25,6 +29,8 @@ class StudentsController < SecureController
 				end
 			end
 			redirect_to :back, notice: "Student was added successfully"
+			#partial = get_partial("students", "students", "view")
+			#render json: {html: partial}
 		else
 			redirect_to :back, alert: new_student.errors.full_messages
 		end

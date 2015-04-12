@@ -7,7 +7,7 @@ class CourseTest < ActiveSupport::TestCase
 	end
 
 	test "Course can get assignments" do
-		assert_equal 5, @course.assignments.count
+		assert_equal 7, @course.assignments.count
 	end
 
 	test "Course can get students" do
@@ -17,6 +17,11 @@ class CourseTest < ActiveSupport::TestCase
 	test "Course can calculate final grade" do 
 		student = students(:s1)
 		assert_equal 100, @course.get_final_grade(student)
+	end
+
+	test "Can calculate finale grade, lowest grade dropped" do
+		student = students(:s2)
+		puts @course.get_final_grade(student).inspect
 	end
 
 

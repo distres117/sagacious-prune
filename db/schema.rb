@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20150317222453) do
     t.float    "percentage"
     t.integer  "course_id"
     t.string   "format"
+    t.boolean  "drop_lowest"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20150317222453) do
   create_table "notes", force: :cascade do |t|
     t.integer  "notable_id"
     t.string   "notable_type"
+    t.text     "content"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

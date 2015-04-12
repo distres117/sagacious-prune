@@ -28,4 +28,13 @@ a5:
   name: Test 1
   assign_type: Test
   course: c1
+a6:
+  name: Midterm1
+  assign_type: Midterm
+  course: c1
+
+a7:
+  name: Midterm2
+  assign_type: Midterm
+  course: c1
 

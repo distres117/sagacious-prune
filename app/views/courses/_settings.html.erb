@@ -1,0 +1,40 @@
+<h4>Course Settings</h4>
+<% if @course.get_total != 1 %>
+	<div class="alert alert-danger">
+		<h5>Total should be 100%</h5>
+	</div>
+<% end %>
+
+
+<table id="gridview">
+	<thead>
+		<th>Course Name</th>
+		<% @course.assignment_types.each do |t| %>
+			<th><%= t.assign_type %>
+				<%= link_to [@course, t], method: :delete, class: "btn btn-default-xs", id: "tip_link", data: {confirm: "Doing this will also delete any assignments of this type! Proceed?", toggle: "tooltip", title: "Delete", placement: "right"} do %>
+					<span class="glyphicon glyphicon-trash"/>
+				<% end %>
+				<% if t.drop_lowest %>
+					<p>(low grade dropped)</p>
+				<% end %>
+			</th>
+			<% end %>
+			<th>Total</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<%= best_in_place @course, :name %>
+			</td>
+			<% @course.assignment_types.each do |t| %> 
+			<td>
+				<%= best_in_place [@course, t], :percentage, display_with: lambda {|i| number_to_percentage(i * 100, precision: 0) }, inner_class: "text_input" %>
+			</td>
+			<% end %>
+			<td>
+				<%= number_to_percentage @course.get_total * 100, precision: 0 %>
+			</td>
+		</tr>
+	</tbody>
+		
+</table>

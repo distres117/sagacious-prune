@@ -1,0 +1,28 @@
+<% course = locals[:course] %>
+<% caller = locals[:caller] %>
+<td class="col-md-2">
+	<%= caller.first %>
+</td>
+<td class="col-md-2">
+	<%=  caller.last %>
+</td>
+<td class="col-md-2">
+	<%=  best_in_place [course, caller], :absences, inner_class: "text_input" %>
+</td>
+<td class="col-md-2">
+	<%=  to_grade(course.get_final_grade(caller)) %>
+</td>
+<td align="center">
+	<%= link_to [course, caller], method: :delete, class: "btn btn-default btn-sm" do %>
+		<span class="glyphicon glyphicon-trash"/>
+	<% end %>
+</td>
+<td align="center">
+	<%= link_to notes_path(type: "Student", n_id: caller.id, c_id: course.id), remote: true, data: {toggle: "modal", target: "#myModal" }, class: "btn btn-primary btn-sm" do %>
+		<span class="glyphicon glyphicon-search"></span>
+		<span class="badge"><%= caller.notes.count %></span>
+	<% end %>
+</td>
+
+
+

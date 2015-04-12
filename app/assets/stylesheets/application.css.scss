@@ -72,5 +72,19 @@ div#mainview{
 	padding-left: 10px;
 }
 
+.modal-body{
+	max-height: 550px;
+	overflow-y: scroll;
+}
 
+.best_in_place{
+	cursor: pointer;
+}
 
+td.day, th.next, th.prev {
+	cursor: pointer;
+}
+
+td.day:hover{
+	background-color: #82B8FF;
+}

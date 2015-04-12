@@ -1,0 +1,17 @@
+<h4 class="modal-header">Notes</h4>
+<div class="modal-body">
+	<% @notes.each do |note| %>
+		<h4><%= note.created_at.to_formatted_s(:long_ordinal) %></h4>
+		<p class="pull-right">
+			<%= link_to "Remove", note_path(note, type: @type, n_id: @id, c_id: @course.id), method: :delete, remote: true, class: "btn btn-default btn-xs pull-right" %>
+		</p>
+		<div class="well">
+			<%= best_in_place note, :content, as: :textarea, place_holder: "Click me" %>
+		</div>
+	<% end %>
+</div>
+<div class="modal-footer">
+	<%= link_to "New", notes_path(type: @type, n_id: @id, c_id: @course.id), method: :post, remote: true, class: "btn btn-primary" %>
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	
+</div>

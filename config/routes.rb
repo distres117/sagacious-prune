@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
 
 
-  #resources :notes
+  resources :notes
   
   resources :grades
   #

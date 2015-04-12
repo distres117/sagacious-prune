@@ -57,7 +57,7 @@ module ApplicationHelper
 	end
 
 
-	def ind_row(param, &block)
+	def ind_row(param, id, &block)
 		if param <= 59
 			 result = "danger"
 		elsif param.between?(60, 69)
@@ -65,10 +65,12 @@ module ApplicationHelper
 		else
 			result = ""
 		end
-		content_tag(:tr, class: result) do
+		content_tag(:tr, id: id, class: result) do
 			block.call
 		end
 	end
+
+	
 
 
 

@@ -11,7 +11,7 @@ class StudentTest < ActiveSupport::TestCase
 	end
 
 	test "student can get assignments" do
-		assert_equal 5, @student.assignments.count
+		assert_equal 7, @student.assignments.count
 	end
 
 	test "student can get notes" do

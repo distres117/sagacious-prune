@@ -9,7 +9,11 @@
 <body>
 	<div class="container" id="viewpanel">
 		<div id ="header">
-			<p class="pull-right"><%= "Hi, #{current_user.username.humanize}" %></p>
+			<p class="pull-right">
+
+				<%= "Hi, #{current_user.username.humanize}" %>
+				<span class="glyphicon glyphicon-user"/>
+			</p>
 			<h1>GradeBook</h1>
 
 		</div>

@@ -1,41 +1,29 @@
-<table id="gridview">
-	<% if !@students.nil? && !@students.empty? %>	
+<% if !@students.nil? && !@students.empty? %>
+	<table id="gridview">
 		<th><%= sortable_link_to "First", "students" %>
 		<th><%= sortable_link_to "Last", "students" %></th>
 		<th><%= sortable_link_to "Absences", "students" %></th>
 		<th>Grade</th>
 		<th>Remove</th>
-		
+		<th>Notes</th>
+
 		<% @students.each do |student| %>
-			<%= ind_row(@course.get_final_grade(student)) do %>
-				<td class="col-md-2">
-					<%= student.first %>
-				</td>
-				<td class="col-md-2">
-					<%=  student.last %>
-				</td>
-				<td class="col-md-2">
-					<%=  best_in_place [@course, student], :absences, inner_class: "text_input" %>
-				</td>
-				<td class="col-md-2">
-					<%=  to_grade(@course.get_final_grade(student)) %>
-				</td>
-				<td align="center">
-					<%= link_to [@course, student], method: :delete, class: "btn btn-default btn-xs" do %>
-						<span class="glyphicon glyphicon-remove-circle"/>
-					<% end %>
-				</td>
-		
+			<%= ind_row(@course.get_final_grade(student), "r#{student.id}") do %>
+				<%= render "row", locals: {caller: student, course: @course} %>
 			<% end %>
 		<% end %>
-	<% end %>
-</table>
+	</table>
+<% end %> 
+
 <div align="center">
 	<%= make_pages(@links) unless @links.nil? %>
 </div>
 <%= render "shared/validation" %>
+<%= render "shared/modal" %>
+
+<h4>New Student</h4>
 <div class="well">
-	<%= form_for [@course, Student.new], html: { class: "form-inline" } do |f| %>
+	<%= form_for [@course, Student.new], html: { class: "form-inline", id: "ajax_form" } do |f| %>
 		<div class="form-group">
 		<%= f.text_field :first, class: "form-control", placeholder: "First name" %> 
 		</div>

@@ -1,0 +1,2 @@
+$('#myModal_inner').html("<%= j render 'index' %>")
+$('#r<%= @caller.id %>').html("<%= j render( @partial, locals: { caller: @caller, course: @course} ) %>")
