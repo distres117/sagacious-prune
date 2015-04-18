@@ -4,12 +4,13 @@
 
 ready = ->
 	$('.best_in_place').on("ajax:success", (evt, data, status, xhr) ->
-		this.blur
 		parsed = jQuery.parseJSON(data)
 		partial = parsed["partial"] 
 		$('#updatable').html(partial)
 		$('.best_in_place').best_in_place()
-		$('#updatable').bind( 'change', ready))
+		ev = $._data($('#updatable')[0], 'events')
+		if ev == undefined
+			$('#updatable').on("ajax:success", ready))
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
