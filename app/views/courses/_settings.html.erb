@@ -9,7 +9,7 @@
 <table id="gridview">
 	<thead>
 		<th>Course Name</th>
-		<% @course.assignment_types.each do |t| %>
+		<% @course.assignment_types.sort_by(&:assign_type).each do |t| %>
 			<th><%= t.assign_type %>
 				<%= link_to [@course, t], method: :delete, class: "btn btn-default-xs", id: "tip_link", data: {confirm: "Doing this will also delete any assignments of this type! Proceed?", toggle: "tooltip", title: "Delete", placement: "right"} do %>
 					<span class="glyphicon glyphicon-trash"/>
