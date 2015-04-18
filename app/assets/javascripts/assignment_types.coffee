@@ -10,7 +10,7 @@ ready = ->
 		$('.best_in_place').best_in_place()
 		ev = $._data($('#updatable')[0], 'events')
 		if ev == undefined
-			$('#updatable').on("ajax:success", ready))
+			$('#updatable').on("click", ready))
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
