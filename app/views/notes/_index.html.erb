@@ -1,12 +1,13 @@
 <h4 class="modal-header">Notes</h4>
 <div class="modal-body">
 	<% @notes.each do |note| %>
-		<h4><%= note.created_at.to_formatted_s(:long_ordinal) %></h4>
+		<h4><%= note.created_at.strftime("%e %B, %Y at %I:%M%p") %></h4>
 		<p class="pull-right">
 			<%= link_to "Remove", note_path(note, type: @type, n_id: @id, c_id: @course.id), method: :delete, remote: true, class: "btn btn-default btn-xs pull-right" %>
 		</p>
 		<div class="well">
-			<%= best_in_place note, :content, as: :textarea, place_holder: "Click me" %>
+			<br>
+			<%= best_in_place note, :content, as: :textarea, inner_class: "bip_ta" , place_holder: "Click me" %>
 		</div>
 	<% end %>
 </div>

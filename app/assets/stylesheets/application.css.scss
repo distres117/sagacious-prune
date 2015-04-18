@@ -79,7 +79,19 @@ div#mainview{
 
 .best_in_place{
 	cursor: pointer;
+	word-wrap: break-word;
 }
+
+.bip_ta {
+	@extend .form-control;
+	width: 100%;
+	word-wrap: break-word;
+}
+
+.best_in_place bip-ta{
+	word-wrap: break-word;	
+}
+
 
 td.day, th.next, th.prev {
 	cursor: pointer;
