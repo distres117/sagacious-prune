@@ -26,7 +26,7 @@
 			<td>
 				<%= best_in_place @course, :name %>
 			</td>
-			<% @course.assignment_types.each do |t| %> 
+			<% @course.assignment_types.sort_by(&:assign_type).each do |t| %> 
 			<td>
 				<%= best_in_place [@course, t], :percentage, display_with: lambda {|i| number_to_percentage(i * 100, precision: 0) }, inner_class: "text_input" %>
 			</td>
