@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
 	has_many :courses
-	has_secure_password
+	has_secure_password #password
 end
